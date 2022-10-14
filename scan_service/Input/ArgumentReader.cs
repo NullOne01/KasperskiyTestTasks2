@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace scan_util.Input
+namespace scan_service.Input
 {
     public class ArgumentReader
     {

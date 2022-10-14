@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace scan_util.Data
+namespace scan_service.Data
 {
     public class ScanResult
     {

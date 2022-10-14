@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using scan_util.Input;
-using scan_util.Scanner;
+using scan_service.Input;
+using scan_service.Scanner;
 
-namespace scan_util
+namespace scan_service
 {
     class Program
     {

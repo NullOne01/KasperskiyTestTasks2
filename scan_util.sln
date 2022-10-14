@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "scan_util", "scan_util\scan_util.csproj", "{91378827-17F1-40DD-A23C-1DF6C9BE93FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "scan_service", "scan_service\scan_service.csproj", "{91378827-17F1-40DD-A23C-1DF6C9BE93FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
