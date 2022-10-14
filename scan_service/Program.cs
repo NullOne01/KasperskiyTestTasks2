@@ -1,7 +1,9 @@
 ﻿using System;
 using System.IO;
-using scan_service.Input;
-using scan_service.Scanner;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading;
+using scan_service.Connection;
 
 namespace scan_service
 {
@@ -9,15 +11,29 @@ namespace scan_service
     {
         private static void Main(string[] args)
         {
-            ArgumentReader argumentReader = new ArgumentReader();
-            DirectoryInfo directory = argumentReader.ReadDirectoryInfo(args, 0);
-
-            MalwareScanner scanner = new MalwareScanner();
-            var scannerResult = scanner.ScanDirectory(directory);
+            IPHostEntry host = Dns.GetHostEntry("localhost");
+            IPAddress ipAddress = host.AddressList[0];
+            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
             
-            Console.WriteLine("====== Scan result ======");
-            Console.WriteLine(scannerResult);
-            Console.WriteLine("=========================");
+            Socket listener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            listener.Bind(localEndPoint);
+            listener.Listen(10);
+            
+            ServiceConnectionListener serviceThread = new ServiceConnectionListener(listener);
+            Thread thread = new Thread(serviceThread.Start);
+            
+            Console.WriteLine("Press ENTER to exit...");
+            while (true)
+            {
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                if (keyInfo.Key == ConsoleKey.Enter)
+                {
+                    break;
+                }
+            }
+            
+            listener.Close();
+            thread.Join();
         }
     }
 }
