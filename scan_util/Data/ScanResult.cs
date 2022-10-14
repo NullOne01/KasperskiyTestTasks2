@@ -13,6 +13,11 @@ namespace scan_util.Data
 
         public void LoadMalwareName(string malwareName)
         {
+            if (!_malwareCounter.ContainsKey(malwareName))
+            {
+                _malwareCounter.Add(malwareName, 0);
+            }
+            
             _malwareCounter[malwareName]++;
         }
 
